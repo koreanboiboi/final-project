@@ -1,0 +1,40 @@
+<a [routerLink]="['/user']" >Profile</a>
+&nbsp;
+<a [routerLink]="['/artists']" >Search Artists</a>
+&nbsp;
+<a [routerLink]="['/albums']">Search Albums</a>
+&nbsp;
+<a [routerLink]="['/favorite']">Favorite</a>
+&nbsp;
+
+<button type="button" [routerLink]="['/']">Logout</button>
+
+<button type="button" (click)="share()">TEST EMAIL</button>
+<div>
+    <button type="button" (click)="getArtist()">My Favorite Artists</button>
+&nbsp;
+    <button type="button" (click)="getAlbum()">My Favorite Albums</button>
+</div>
+<div *ngIf="showArtist">
+    <div *ngFor="let art of artist">
+        <img src="{{art.image}}" alt="" sizes="20vw">
+        <h3>LINK: {{art.directLink}}</h3>
+        <h3>Name: {{art.name}}</h3>
+        <h3>ID: {{art.id}}</h3>
+        <h3>Popularity: {{art.popularity}}</h3>
+        <button type="button" (click)="deleteArtist(art.id)">Delete</button>
+    </div>
+</div>
+
+
+<div *ngIf="showAlbum">
+    <div *ngFor="let alb of album">
+        <img src="{{alb.image}}" alt="" sizes="20vw">
+        <h3>LINK: {{alb.directLink}}</h3>
+        <h3>Name: {{alb.albumName}}</h3>
+        <h3>date:{{alb.date}}</h3>
+        <h3>ID:{{alb.id}}</h3>
+        <button type="button" (click)="deleteAlbum(alb.id)">Delete</button>
+    </div>
+</div>
+

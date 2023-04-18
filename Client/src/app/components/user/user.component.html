@@ -1,0 +1,26 @@
+<a [routerLink]="['/user']" >Profile</a>
+&nbsp;
+<a [routerLink]="['/artists']" >Search Artists</a>
+&nbsp;
+<a [routerLink]="['/albums']">Search Albums</a>
+&nbsp;
+<a [routerLink]="['/favorite']">Favorite</a>
+&nbsp;
+
+
+<button type="button" [routerLink]="['/']">Logout</button>
+
+
+<div>
+  <!-- <button type="button" (click)="getUserProfile()">User Profile</button> -->
+  <div *ngFor="let users of user">
+    <h1>{{users.display_name}}</h1>
+      <p>Name: {{ users.display_name }}</p>
+      <a href="{{ users.external_urls.spotify }}">Go to my Spotify profile:</a>
+      <p>Followers: {{ users.followers.total }}</p>
+      <p>ID: {{ users.id }}</p>
+      <a href="{{ users.images[0].url }}">Download Image </a>
+      <img src="{{ users.images[0].url }}" alt="{{ users.images[0].url }}" width="100vw">
+  </div>
+
+</div>
