@@ -9,7 +9,6 @@
 
 <button type="button" [routerLink]="['/']">Logout</button>
 
-<button type="button" (click)="share()">TEST EMAIL</button>
 <div>
     <button type="button" (click)="getArtist()">My Favorite Artists</button>
 &nbsp;
@@ -23,6 +22,8 @@
         <h3>ID: {{art.id}}</h3>
         <h3>Popularity: {{art.popularity}}</h3>
         <button type="button" (click)="deleteArtist(art.id)">Delete</button>
+        <button type="button" (click)="shareArtist(art)">SHARE</button>
+
     </div>
 </div>
 
@@ -35,6 +36,8 @@
         <h3>date:{{alb.date}}</h3>
         <h3>ID:{{alb.id}}</h3>
         <button type="button" (click)="deleteAlbum(alb.id)">Delete</button>
+        <button type="button" (click)="shareAlbum(alb)">SHARE</button>
+
     </div>
 </div>
 

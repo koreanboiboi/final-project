@@ -78,14 +78,29 @@ export class FavoriteComponent implements OnInit{
   }
 
 
-  share() {
-    const user = this.artist
-    console.info('>>>> user: ', user)
+  shareArtist(artistData:any) {
+    const artist = artistData
+    const imageURL = artistData.image
+    const fileContent = JSON.stringify(artist)
+
+    fetch(imageURL)
+    .then(response => response.blob())
+    .then(blob => {
+      const imageFile = new File([blob], 'artist.jpg', { type: 'image/jpeg' });
+
+      // const image = document.createElement('img');
+      // image.src = URL.createObjectURL(imageFile);
+      // const link = document.createElement('a');
+      // link.href = imageURL;
+      // link.appendChild(image);
+
     navigator.share({
-      title: 'My awesome web app',
-      text: 'Check out this cool content!',
-      url: 'http://localhost:4200/',
-      files: [new File(['hello'], 'hello.txt', { type: 'text/plain' })]
+      title: 'My awesome SINGLE PAGE APP',
+      text: 'Check out this cool content!\n'
+            +`Listen to ${JSON.stringify(artistData.name)} on Spotify \n`
+            +'Click link below',
+      url: artistData.directLink,
+      files: [new File([fileContent], 'Artist.txt', { type: 'text/plain' }),imageFile]
     })
     .then(result => {
       console.info('>>> share result: ', result)
@@ -93,10 +108,32 @@ export class FavoriteComponent implements OnInit{
     .catch(err => {
       console.error('>>> share error: ', err)
     })
-    /*
-    this.webshare.share({
-      title: user.name,
-      text: `Email: ${user.email}, Phone: ${user.phone}`
+  })
+  }
+
+  shareAlbum (albumData:any) {
+    const album = albumData
+    const imageURL = albumData.image
+    const fileContent = JSON.stringify(album)
+
+    fetch(imageURL)
+    .then(response => response.blob())
+    .then(blob => {
+      const imageFile = new File([blob], 'artist.jpg', { type: 'image/jpeg' });
+
+      // const image = document.createElement('img');
+      // image.src = URL.createObjectURL(imageFile);
+      // const link = document.createElement('a');
+      // link.href = imageURL;
+      // link.appendChild(image);
+
+    navigator.share({
+      title: 'My awesome SINGLE PAGE APP',
+      text: 'Check out this cool content!\n'
+            +`Listen to ${JSON.stringify(albumData.albumName)} on Spotify \n`
+            +'Click link below',
+      url: albumData.directLink,
+      files: [new File([fileContent], 'Album.txt', { type: 'text/plain' }),imageFile]
     })
     .then(result => {
       console.info('>>> share result: ', result)
@@ -104,7 +141,7 @@ export class FavoriteComponent implements OnInit{
     .catch(err => {
       console.error('>>> share error: ', err)
     })
-    */
+  })
   }
 
 }

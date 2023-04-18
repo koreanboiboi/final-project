@@ -35,12 +35,6 @@ export class UserComponent {
       const userId = data[0].id
       localStorage.setItem("user_id",userId)
 
-      // const userData = {
-      //   "unique_user_id": this,
-      //   "name": this.user
-      // };
-      // console.log("USERDATA",userData)
-
       this.spotSvc.saveUser(data).subscribe(response => {
         alert("Saved Successfully")
       });

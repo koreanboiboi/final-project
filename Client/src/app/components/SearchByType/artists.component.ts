@@ -44,6 +44,7 @@ export class ArtistsComponent implements OnInit{
     try {
       const data = await this.spotAuthSvc.searchArtists(param).toPromise();
       console.log("data string>>>>>>",JSON.stringify(data))
+      // console.log("ext url >>>>>>" , data.external_urls)
       this.artist = data;
       
   
@@ -61,7 +62,7 @@ export class ArtistsComponent implements OnInit{
         "spotify_artist_id": selectedArtist.id,
         "artist_name": selectedArtist.name,
         "popularity": selectedArtist.popularity,
-        "external_urls": selectedArtist.external_urls.spotify,
+        "external_urls": `https://open.spotify.com/artist/${selectedArtist.id}`,
         "image": selectedArtist.images[0].url
     };
 
