@@ -112,5 +112,16 @@ public ResponseEntity<String> saveAlbum(@RequestBody Map<String,String> albumId,
     
 }
 
+// @GetMapping("/viewGallery")
+// public ResponseEntity<List<byte[]>> getAllImages() {
+//     // Retrieve all image data from database
+//     List<byte[]> imageDataList = galleryRepository.findAllData();
+
+//     // Return response entity with list of image data and content type
+//     HttpHeaders headers = new HttpHeaders();
+//     headers.setContentType(MediaType.IMAGE_JPEG); // or MediaType.IMAGE_PNG, etc.
+//     return new ResponseEntity<>(imageDataList, headers, HttpStatus.OK);
+// }
+
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { async } from 'rxjs';
 import { SpotifyAlbums, SpotifyArtists, sqlAlbum, sqlArtist } from 'src/app/models';
 import { SpotifyService } from 'src/app/spotify.service';
 
@@ -119,13 +120,23 @@ export class FavoriteComponent implements OnInit{
     fetch(imageURL)
     .then(response => response.blob())
     .then(blob => {
-      const imageFile = new File([blob], 'artist.jpg', { type: 'image/jpeg' });
+      const imageFile = new File([blob], 'album.jpg', { type: 'image/jpeg' });
+      
+      const formData = new FormData()
+      formData.append('file', blob, 'album.jpg');
 
-      // const image = document.createElement('img');
-      // image.src = URL.createObjectURL(imageFile);
-      // const link = document.createElement('a');
-      // link.href = imageURL;
-      // link.appendChild(image);
+    fetch('http://localhost:8080/api/gallery', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(() => {
+      console.log('Upload success:',JSON.stringify(formData));
+    })
+    .catch(error => {
+      console.error('Upload error:', error);
+    });
+
 
     navigator.share({
       title: 'My awesome SINGLE PAGE APP',
@@ -135,11 +146,11 @@ export class FavoriteComponent implements OnInit{
       url: albumData.directLink,
       files: [new File([fileContent], 'Album.txt', { type: 'text/plain' }),imageFile]
     })
-    .then(result => {
-      console.info('>>> share result: ', result)
+    .then(() => {
+      console.info('Share success ')
     })
     .catch(err => {
-      console.error('>>> share error: ', err)
+      console.error('Share error: ', err)
     })
   })
   }

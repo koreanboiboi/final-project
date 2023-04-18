@@ -37,4 +37,9 @@ public interface Queries {
 
     public String SQL_CHECK_USER = "SELECT * FROM user WHERE unique_user_id = ? AND name = ?";
 
+    //-------------------------------------BLOB-----------------------------------------------------------------------------------------------------------------------
+    public String SQL_INSERT_BLOB = "INSERT INTO gallery (data) values (?)"; 
+
+    public String SQL_GET_BLOB = "SELECT * FROM gallery ORDER BY RAND() LIMIT 1";
+
 }

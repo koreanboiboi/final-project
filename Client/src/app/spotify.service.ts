@@ -47,5 +47,9 @@ export class SpotifyService {
     deleteAlbum(deleteById: any){
       return this.http.delete<any>(`${this.backend}/api/deleteAlbum/${deleteById}`)
     }
+
+    getBlob(){
+      return this.http.get<any>(`${this.backend}/api/viewGallery`)
+    }
       
 }

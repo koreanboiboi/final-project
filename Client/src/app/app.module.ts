@@ -13,6 +13,7 @@ import { SpotifyService } from './spotify.service';
 import { LoginComponent } from './components/Login/login.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { UserComponent } from './components/user/user.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UserComponent } from './components/user/user.component';
     ArtistsComponent,
     AlbumsComponent,
     FavoriteComponent,
-    UserComponent
+    UserComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

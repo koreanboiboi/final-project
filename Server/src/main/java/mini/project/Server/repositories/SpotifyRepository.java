@@ -10,6 +10,10 @@ import static mini.project.Server.repositories.Queries.SQL_INSERT_USER;
 import static mini.project.Server.repositories.Queries.SQL_DELETE_ARTIST;
 import static mini.project.Server.repositories.Queries.SQL_GET_ALBUM;
 import static mini.project.Server.repositories.Queries.SQL_DELETE_ALBUM;
+import static mini.project.Server.repositories.Queries.SQL_INSERT_BLOB;
+import static mini.project.Server.repositories.Queries.SQL_GET_BLOB;
+
+
 
 
 
@@ -20,6 +24,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -179,5 +187,40 @@ public class SpotifyRepository {
 
     return userList;
 }
+
+    public void upload(byte[] bytes) {
+        temp.update(SQL_INSERT_BLOB, bytes);
+    }
+
+    public byte[] getBlob(){
+        
+        byte[] blobData = temp.queryForObject(SQL_GET_BLOB,  new Object[]{}, byte[].class);
+
+        return blobData;
+    }
+
+    // public ResponseEntity<byte[]> getBlob(){
+    //     byte [] data = temp.queryForObject(SQL_GET_BLOB, new Object[] { }, byte[].class);
+
+    //     HttpHeaders headers = new HttpHeaders();
+    //     headers.setContentType(MediaType.IMAGE_JPEG);
+    //     headers.setContentLength(data.length);
+
+    //     return new ResponseEntity<>(data, headers, HttpStatus.OK);
+    // }
+
+    // public ResponseEntity<byte[]> getBlob() {
+
+    // byte[] data = temp.queryForObject(SQL_GET_BLOB, new Object[]{}, byte[].class);
+    
+    // HttpHeaders headers = new HttpHeaders();
+    // headers.setContentType(MediaType.IMAGE_JPEG);
+    // headers.setContentLength(data.length);
+
+    // return new ResponseEntity<>(data, headers, HttpStatus.OK);
+
+
+    
+    
 
 }
