@@ -105,7 +105,11 @@ public class SpotifyService {
         String params = param.toString()
                                 .replace("{", "")
                                 .replace("}", "")
-                                .replace(", ", "&");
+                                .replace(", ", "&")
+                                .replace(" ","")
+                                .trim();
+                            
+        System.out.println("parms after change"+params);
 
         String searchArtistUrl = UriComponentsBuilder.fromUriString(SEARCHURL).query(params).toUriString();
 
@@ -147,7 +151,9 @@ public class SpotifyService {
         String params = param.toString()
                                 .replace("{", "")
                                 .replace("}", "")
-                                .replace(", ", "&");
+                                .replace(", ", "&")
+                                .replace(" ","")
+                                .trim();
 
         String searchAlbumUrl = UriComponentsBuilder.fromUriString(SEARCHURL).query(params).toUriString();
 

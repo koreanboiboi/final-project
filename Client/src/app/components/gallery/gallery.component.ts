@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { SpotifyService } from 'src/app/spotify.service';
 
 @Component({
@@ -6,46 +7,21 @@ import { SpotifyService } from 'src/app/spotify.service';
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
 
 
 
-  constructor( private spotSvc: SpotifyService){
+  constructor( private spotSvc: SpotifyService, private router: Router){
   
-   this.getBlob()
+    
     
   }
-
-  // async getBlob(){
-
-  //   try {
-  //     const data = await this.spotSvc.getBlob().toPromise();
-  //     console.log("data string>>>>>>",JSON.stringify(data))
-  //     this.blobData = data;
-
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  getBlob(){
-
-  fetch('http://localhost:8080/api/viewGallery')
-  .then(response => response.blob())
-  .then(blob => {
-    
-    console.log('Download success:', blob);
-    // do something with the blob data, like displaying an image
-    const img = document.createElement('img');
-    img.src = URL.createObjectURL(blob);
-    // document.body.appendChild(img);
-  const container = document.getElementById('image-container');
-  container?.appendChild(img);
-  
-})
-  .catch(error => {
-    console.error('Download error:', error);
-  });
+  refreshPage() {
+    // this.router.navigate(['/gallery']);
+    location.reload();
+  }
+  ngOnInit(): void {
+    this.spotSvc.getBlob()
   }
 
 }

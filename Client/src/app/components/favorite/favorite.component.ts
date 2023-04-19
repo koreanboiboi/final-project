@@ -88,6 +88,22 @@ export class FavoriteComponent implements OnInit{
     .then(response => response.blob())
     .then(blob => {
       const imageFile = new File([blob], 'artist.jpg', { type: 'image/jpeg' });
+      
+    const formData = new FormData()
+
+    formData.append('file', blob, 'artist.jpg');
+      
+    fetch('http://localhost:8080/api/gallery', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(() => {
+      console.log('Upload success:',JSON.stringify(formData));
+    })
+    .catch(error => {
+      console.error('Upload error:', error);
+    });
 
       // const image = document.createElement('img');
       // image.src = URL.createObjectURL(imageFile);
@@ -122,8 +138,9 @@ export class FavoriteComponent implements OnInit{
     .then(blob => {
       const imageFile = new File([blob], 'album.jpg', { type: 'image/jpeg' });
       
-      const formData = new FormData()
-      formData.append('file', blob, 'album.jpg');
+    const formData = new FormData()
+    formData.append('file', blob, 'album.jpg');
+      
 
     fetch('http://localhost:8080/api/gallery', {
       method: 'POST',

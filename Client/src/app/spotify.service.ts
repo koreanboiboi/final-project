@@ -48,8 +48,27 @@ export class SpotifyService {
       return this.http.delete<any>(`${this.backend}/api/deleteAlbum/${deleteById}`)
     }
 
+   
     getBlob(){
-      return this.http.get<any>(`${this.backend}/api/viewGallery`)
+
+     return fetch(`${this.backend}/api/viewGallery`)
+      .then(response => response.blob())
+      .then(blob => {
+        
+        console.log('Download success:', blob);
+        // do something with the blob data, like displaying an image
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(blob);
+        // document.body.appendChild(img);
+      const container = document.getElementById('image-container');
+      container?.appendChild(img);
+      
+    })
+      .catch(error => {
+        console.error('Download error:', error);
+      });
+
+      // return this.http.get<any>(`${this.backend}/api/viewGallery`)
     }
       
 }

@@ -6,6 +6,8 @@
 &nbsp;
 <a [routerLink]="['/favorite']">Favorite</a>
 &nbsp;
+<a [routerLink]="['/gallery']">Gallery</a>
+&nbsp;
 
 
 <button type="button" [routerLink]="['/']">Logout</button>
@@ -16,7 +18,7 @@
   <div *ngFor="let users of user">
     <h1>{{users.display_name}}</h1>
       <p>Name: {{ users.display_name }}</p>
-      <a href="{{ users.external_urls.spotify }}">Go to my Spotify profile:</a>
+      <a href="{{ users.external_urls.spotify }}" target="_blank">Go to my Spotify profile:</a>
       <p>Followers: {{ users.followers.total }}</p>
       <p>ID: {{ users.id }}</p>
       <a href="{{ users.images[0].url }}">Download Image </a>
