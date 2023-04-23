@@ -2,13 +2,6 @@ package mini.project.Server.repositories;
 
 public interface Queries {
     
-    // public String SQL_SELECT_USER = "select * from user order by ID desc limit 1";
-    
-    // public String SQL_SEARCH = "select * from user where display_name like ?";
-
-    // public String SQL_INSERT_USER = "INSERT INTO user VALUES ?";
-
-    // public String SQL_SELECT_SEARCH = "SELECT * FROM search_results WHERE query=? AND type=? AND limit=?";
 
     // -------------------------------------ARTIST--------------------------------------------------------------------------------------------------------------------
 
@@ -16,7 +9,6 @@ public interface Queries {
 
     public String SQL_INSERT_ARTIST = "INSERT INTO artist(spotify_artist_id, artist_name, popularity, link, image, user_id) values(?, ?, ?, ?, ?, ?)";
 
-    // public String SQL_INSERT_ARTIST ="INSERT IGNORE INTO artist (spotify_artist_id, name, popularity, followers, link, id) VALUES (?, ?, ?, ?, ?, ?)";
     public String SQL_CHECK_ARTIST = "SELECT * FROM artist WHERE spotify_artist_id = ?";
 
     public String SQL_DELETE_ARTIST = "DELETE FROM artist WHERE spotify_artist_id = ?";

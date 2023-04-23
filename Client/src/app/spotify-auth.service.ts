@@ -15,7 +15,7 @@ export class SpotifyAuthService {
 
   private client_id:string = '1987a0a7b4c546dfb0d35b687172b78d'
   private client_secret: string ='b1be59d2deba4e70840e874b1be791d2'
-  private redirect_uri: string = 'http://localhost:4200/home'
+  private redirect_uri: string = 'http://localhost:4200/success'
 
   private state = this.generateRandomString(16);
   private scope = 'user-read-private&user-read-email&user-library-read&user-library-modify&user-top-read';
@@ -64,13 +64,15 @@ export class SpotifyAuthService {
           'Authorization': 'Basic ' + btoa(this.client_id + ':' + this.client_secret),
           'Content-Type': 'application/x-www-form-urlencoded'
         });
+        console.log(this.client_id)
+        console.log(this.client_secret)
 
         let body = new URLSearchParams();
         body.set('code', code);
         body.set('redirect_uri', this.redirect_uri);
         body.set('grant_type', 'authorization_code');
 
-        this.http.post<any>('https://accounts.spotify.com/api/token', body.toString(), { headers }).subscribe(
+        this.http.post<any>('https://accounts.spotify.com/api/token', body, { headers }).subscribe(
           data => {
             // data contains my access token and refresh token
             console.log(data.access_token)
@@ -87,7 +89,7 @@ export class SpotifyAuthService {
     
   }
 
-  refreshAccessToken() {
+  async refreshAccessToken() {
     let headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa(this.client_id + ':' + this.client_secret),
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -97,7 +99,7 @@ export class SpotifyAuthService {
     body.set('grant_type', 'refresh_token');
     body.set('refresh_token', this.refresh_token);
 
-    this.http.post<any>('https://accounts.spotify.com/api/token', body.toString(), { headers }).subscribe(
+    const data = await this.http.post<any>('https://accounts.spotify.com/api/token', body.toString(), { headers }).subscribe(
       data => {
         this.access_token = data.access_token;
         this.refresh_token = data.refresh_token
@@ -116,9 +118,6 @@ export class SpotifyAuthService {
 
   //-------------------------------------------------URL HERE-----------------------------------------------------------------------------
   private userInfoURL = 'http://localhost:8080/api/user'
-  // private searchURL = 'https://api.spotify.com/v1/search'
-
-  // private apiUrl = 'http://localhost:8080/api/search';
   private searchArtistUrl = 'http://localhost:8080/api/artists';
   private searchAlbumUrl = 'http://localhost:8080/api/albums';
   private saveAlbumUrl = 'http://localhost:8080/api/albums/save'
@@ -179,21 +178,4 @@ export class SpotifyAuthService {
   }
 }
 
-    // .subscribe(
-    //   response => {
-    //     console.log("Album saved successfully", response)
-    //   },
-    //   (error) =>{
-    //     console.error("error >>> ", error)
-    //   }
-    // )
-
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': 'Bearer ' + this.access_token
-  //   })
-  //   return this.http.put<any>(this.saveAlbumUrl)
-  // }
-
-  // --------------------------------API CALL UNTIL HERE------------------------------------------------------------------------
 

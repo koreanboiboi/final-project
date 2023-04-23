@@ -2,8 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable, Subject } from 'rxjs';
 import { User } from './models';
-// import { User } from 'spotify-api.js';
-
+import * as FileSaver from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -56,10 +55,8 @@ export class SpotifyService {
       .then(blob => {
         
         console.log('Download success:', blob);
-        // do something with the blob data, like displaying an image
         const img = document.createElement('img');
         img.src = URL.createObjectURL(blob);
-        // document.body.appendChild(img);
       const container = document.getElementById('image-container');
       container?.appendChild(img);
       
@@ -68,7 +65,7 @@ export class SpotifyService {
         console.error('Download error:', error);
       });
 
-      // return this.http.get<any>(`${this.backend}/api/viewGallery`)
     }
+
       
 }

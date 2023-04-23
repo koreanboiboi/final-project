@@ -57,27 +57,20 @@ public class SpotifyRepository {
         String spotifyArtistId = (String) artistMap.get("spotify_artist_id");
         String artistName = (String) artistMap.get("artist_name");
         int popularity = (int) artistMap.get("popularity");
-        // int followers = (int) artistMap.get("followers");
         String link = (String) artistMap.get("external_urls");
         String image = (String) artistMap.get("image");
         String id = currentUserId;
     
-        if (spotifyArtistId != null ) { // check if spotify_artist_id is not null
-            // execute the SQL insert statement to save the artist data to the database
+        if (spotifyArtistId != null ) { 
             temp.update(SQL_INSERT_ARTIST, spotifyArtistId, artistName, popularity, link, image,id);
     
-            // retrieve the saved artist data from the database and add it to the list of saved artists
-            // String sql = "SELECT * FROM artist WHERE spotify_artist_id = ?";
-            // SpotifyArtist savedArtist = temp.queryForObject(SQL_CHECK_ARTIST, new Object[]{spotifyArtistId}, new BeanPropertyRowMapper<>(SpotifyArtist.class));
-            
+          
            
             SpotifyArtist savedArtist = temp.queryForObject(SQL_CHECK_ARTIST, new Object[]{spotifyArtistId}, new BeanPropertyRowMapper<>(SpotifyArtist.class));
-            // while(savedArtist.next())
-            // savedArtists.add(SpotifyArtist.createArtist(savedArtist));
+          
             savedArtists.add(savedArtist);
         } else {
-            // handle the case where spotify_artist_id is null
-            // ...
+      
             System.out.println("ERROR");
             System.out.println(spotifyArtistId);
         }
@@ -89,9 +82,7 @@ public class SpotifyRepository {
     public List<Artist> getArtist(String userId){
        
         System.out.println("USER ID STRING >>>>>>>>>>>>>>>>>> " + userId);
-    //     List<SpotifyArtist> artists = temp.query(SQL_GET_ARTIST, new Object[]{userId},
-    //     new RowMapperResultSetExtractor<SpotifyArtist>(new BeanPropertyRowMapper<>(SpotifyArtist.class))
-    // );
+
 
         SqlRowSet rs = temp.queryForRowSet(SQL_GET_ARTIST,userId);
 
@@ -101,10 +92,7 @@ public class SpotifyRepository {
 
             return artists;
 
-        // System.out.println("ARTIST LIST >>>>" + artists);
-      
-        // return artists;
-        // return temp.queryForRowSet(SQL_GET_ARTIST,userId);
+
     }
 
     //DELETE ARTIST FROM MYSQL
@@ -199,28 +187,7 @@ public class SpotifyRepository {
         return blobData;
     }
 
-    // public ResponseEntity<byte[]> getBlob(){
-    //     byte [] data = temp.queryForObject(SQL_GET_BLOB, new Object[] { }, byte[].class);
-
-    //     HttpHeaders headers = new HttpHeaders();
-    //     headers.setContentType(MediaType.IMAGE_JPEG);
-    //     headers.setContentLength(data.length);
-
-    //     return new ResponseEntity<>(data, headers, HttpStatus.OK);
-    // }
-
-    // public ResponseEntity<byte[]> getBlob() {
-
-    // byte[] data = temp.queryForObject(SQL_GET_BLOB, new Object[]{}, byte[].class);
-    
-    // HttpHeaders headers = new HttpHeaders();
-    // headers.setContentType(MediaType.IMAGE_JPEG);
-    // headers.setContentLength(data.length);
-
-    // return new ResponseEntity<>(data, headers, HttpStatus.OK);
-
-
-    
+   
     
 
 }

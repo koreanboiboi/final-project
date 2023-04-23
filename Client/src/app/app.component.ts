@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import SpotifyWebApi from 'spotify-web-api-js'
+
 import { SpotifyAuthService } from './spotify-auth.service';
 
 
@@ -11,31 +11,33 @@ import { SpotifyAuthService } from './spotify-auth.service';
 })
 export class AppComponent implements OnInit {
 
+
   ngOnInit(): void {
 
-    // this.spotifyLogin();
-    // this.spotSvc.requestAccessToken();
-    this.disabled = false;
   }
 
   constructor(private spotSvc: SpotifyAuthService){}
 
-  spotifyLogin(){
-    this.spotSvc.spotifyLogin();
-  }
+  // spotifyLogin(){
+  //   this.spotSvc.spotifyLogin();
+  // }
 
-  disabled = false;
+  // disabled = false;
 
-  enabled = true;
+  // enabled = true;
 
-  isDisabled(){
-    this.disabled = true;
-    this.enabled = false;
-  }
+  // isDisabled(){
+  //   this.disabled = true;
+  //   this.enabled = false;
+  // }
 
-  logout(){
-    this.enabled = true;
-    this.disabled = false;
+  // logout(){
+  //   this.enabled = true;
+  //   this.disabled = false;
+  // }
+
+  paypalMe(){
+    window.open('https://www.paypal.me/koreanboiboi','_blank')
   }
 
 

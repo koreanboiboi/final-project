@@ -10,6 +10,17 @@ import { SpotifyAuthService } from 'src/app/spotify-auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  show = true
+  display = false;
+
+  centered = false;
+  disabled = false;
+  unbounded = false;
+
+  radius!: number;
+  color!: string;
+  
+  panelOpenState = false;
  
   constructor (private spotSvc: SpotifyAuthService){}
 
@@ -18,6 +29,15 @@ export class LoginComponent implements OnInit {
    
       
   }
+
+  shows(){
+    this.show = !this.show
+  }
+
+  displayDetail(){
+    this.display = !this.display
+  }
+  
 
   login(){
     this.spotSvc.spotifyLogin();

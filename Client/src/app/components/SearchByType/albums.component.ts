@@ -72,4 +72,12 @@ export class AlbumsComponent implements OnInit {
 
     this.popup = true
   }
+
+
+
+  goSpotify(url: any){
+    window.open(url,'_blank')
+  }
+
 }
+

@@ -2,7 +2,7 @@
   "name": "noice",
   "short_name": "nc",
   "theme_color": "#2196F3",
-  "background_color": "#2196F3",
+  "background_color": "#ECEFF1",
   "display": "standalone",
  
   "scope": "/",

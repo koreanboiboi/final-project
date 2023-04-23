@@ -165,7 +165,6 @@ public class SpotifyArtist {
     JsonObject followers = jo.getJsonObject("followers");
     Map<String, Integer> followersMap = new HashMap<>();
     followersMap.put("total", followers.getInt("total"));
-    // followersMap.put("href", followers.isNull("href") ? null : followers.getString("href"));
     
     //THIS//
     spotifyArtist.setFollowers(followersMap);
@@ -240,10 +239,7 @@ public class SpotifyArtist {
                     .build();
                 
     }
- // JsonObjectBuilder followersBuilder = Json.createObjectBuilder();
-        // followers.entrySet().forEach(entry -> followersBuilder.add(entry.getKey(), entry.getValue()));
-        
-
+ 
 
     public static SpotifyArtist createArtist(SqlRowSet rs) {
 
@@ -253,8 +249,7 @@ public class SpotifyArtist {
         artist.setName(rs.getString("artist_name"));
         artist.setPopularity(rs.getInt("popularity"));
         artist.setDirectLink(rs.getString("link"));
-        // artist.setExternal_urls(external_urls);
-        // artist.setFollowers(followers);
+        
     
         return artist;
         

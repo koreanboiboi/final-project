@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '', component:LoginComponent},
   {path: 'artists', component:ArtistsComponent},
   {path: 'albums', component:AlbumsComponent},
-  {path: 'home' , component: HomeComponent},
+  {path: 'success' , component: HomeComponent},
   {path: 'user' , component: UserComponent},
   {path: 'favorite' , component: FavoriteComponent},
   {path: 'gallery' , component: GalleryComponent},

@@ -1,16 +1,12 @@
 package mini.project.Server.controllers;
 
-import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -20,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
-import mini.project.Server.models.SpotifyArtist;
-import mini.project.Server.repositories.SpotifyRepository;
 import mini.project.Server.services.SpotifyService;
 
 @Controller
@@ -30,12 +24,11 @@ public class SpotifyController {
 
     @Autowired
     private SpotifyService spotSvc;
-    @Autowired
-    private SpotifyRepository spotRepo;
+    
 
 //------------------------------------------------from SpotifyAPI----------------------------------------------------------------------
 //get user profile from spotifyAPI
-@GetMapping(path = "/user", consumes = MediaType.APPLICATION_JSON_VALUE)
+@GetMapping(path = "/user")
 @ResponseBody
 public ResponseEntity<String> getUserProfile(@RequestHeader Map<String, String> headers){
 
@@ -59,19 +52,15 @@ public ResponseEntity<String> searchArtist(@RequestParam Map<String,String> para
     System.out.println("headers: >>>>>"+headers);
 
     JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-    // JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
 
     spotSvc.searchArtist(param,headers).stream().forEach(v -> {
         arrayBuilder.add(v.toJson());
-        // objectBuilder.add("artists", arrayBuilder); 
     });
     
     System.out.println("ARRAYBUILDER>>>>>>>>>>>>"+arrayBuilder);
-    // System.out.println("OBJECTBUILDER>>>>>>>>>>" + objectBuilder.build().toString());
     return ResponseEntity.ok(arrayBuilder.build().toString());
 
-//     System.out.println("OBJECT BUILT >>>>>>>>>" + objectBuilder.build().toString());
-//     return ResponseEntity.ok(objectBuilder.build().toString());
+
 }
 
 //get album from spotifyAPI
@@ -111,17 +100,6 @@ public ResponseEntity<String> saveAlbum(@RequestBody Map<String,String> albumId,
      return ResponseEntity.ok("Album saved successfully!");
     
 }
-
-// @GetMapping("/viewGallery")
-// public ResponseEntity<List<byte[]>> getAllImages() {
-//     // Retrieve all image data from database
-//     List<byte[]> imageDataList = galleryRepository.findAllData();
-
-//     // Return response entity with list of image data and content type
-//     HttpHeaders headers = new HttpHeaders();
-//     headers.setContentType(MediaType.IMAGE_JPEG); // or MediaType.IMAGE_PNG, etc.
-//     return new ResponseEntity<>(imageDataList, headers, HttpStatus.OK);
-// }
 
 
 }

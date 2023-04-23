@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { SpotifyService } from 'src/app/spotify.service';
 
+
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -11,17 +12,18 @@ export class GalleryComponent implements OnInit {
 
 
 
-  constructor( private spotSvc: SpotifyService, private router: Router){
-  
-    
+  constructor( private spotSvc: SpotifyService){
+
     
   }
-  refreshPage() {
-    // this.router.navigate(['/gallery']);
-    location.reload();
-  }
+
   ngOnInit(): void {
     this.spotSvc.getBlob()
   }
 
+  getBlob(){
+    this.spotSvc.getBlob()
+  }
+
+ 
 }

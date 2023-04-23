@@ -20,14 +20,19 @@ export class ArtistsComponent implements OnInit{
   popup: boolean = false;
   selectArtist: any;
 
+  artistControl = new FormControl('', [Validators.required]);
+  limitControl = new FormControl(5, [Validators.required,Validators.min(1),Validators.max(15)]);
+
+
   constructor(private fb: FormBuilder,private spotAuthSvc: SpotifyAuthService, private spotSvc: SpotifyService){}
 
   ngOnInit(): void {
     this.artistsForm = this.fb.group({
       q: this.fb.control<string>('',[Validators.required]),
       type: this.fb.control<string>('artist'),
-      limit: this.fb.control<number>(5,[Validators.required, Validators.min(5),Validators.max(25)])
+      limit: this.fb.control<number>(5,[Validators.required, Validators.min(1),Validators.max(15)])
   })
+
   }
 
    async searchArtist(){
@@ -75,4 +80,11 @@ export class ArtistsComponent implements OnInit{
     this.popup = true
   }
 
+
+  goSpotify(id: any){
+
+    window.open('https://open.spotify.com/artist/'+id,'_blank')
+
+    
+  }
 }

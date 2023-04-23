@@ -18,6 +18,12 @@ public class AppConfig {
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .maxAge(3600);
+                        
+                registry.addMapping("/api/token")
+                        .allowedOrigins("https://accounts.spotify.com")
+                        .allowedMethods("OPTIONS","GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("*")
+                        .maxAge(3600);
             }
         };
     }

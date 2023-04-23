@@ -1,83 +1,69 @@
-<!-- <a [routerLink]="['/user']" >Profile</a>
-&nbsp;
-<a [routerLink]="['/artists']" >Search Artists</a>
-&nbsp;
-<a [routerLink]="['/albums']">Search Albums</a>
-&nbsp;
-<a [routerLink]="['/favorite']">Favorite</a>
-&nbsp; -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+</head>
+<body color="primary">
+  <!-- My navbar -->
+  
+  <mat-toolbar class="toolbar" color="secondary" >
+
+    <!-- <button mat-icon-button matTooltip="Home" class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="['/user']"> -->
+      <mat-icon>home</mat-icon>
+    <!-- </button> -->
+    <button mat-button disabled [routerLink]="['/user']">Home</button>
+    
+    <!-- <button mat-icon-button matTooltip="Search Artist"class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" [routerLink]="['/artists']"> -->
+      <mat-icon>person</mat-icon>
+    <!-- </button> -->
+    <button mat-button disabled [routerLink]="['/artists']">Search Artist</button>
+    
+    <!-- <button mat-icon-button matTooltip="Search Album" class="example-icon" aria-label="Example icon-button with share icon" [routerLink]="['/albums']"> -->
+      <mat-icon>album</mat-icon>
+    <!-- </button> -->
+    <button mat-button disabled [routerLink]="['/albums']">Search Album</button>
+    
+    <!-- <button mat-icon-button matTooltip="View my favorites" class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="['/favorite']"> -->
+      <mat-icon>favorite</mat-icon>
+    <!-- </button> -->
+    <button mat-button disabled [routerLink]="['/favorite']">Favorite</button>
+    
+    <!-- <button mat-icon-button matTooltip="View gallery" class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="['/gallery']"> -->
+      <mat-icon>collections</mat-icon>
+    <!-- </button> -->
+    <button mat-button disabled [routerLink]="['/gallery']">Gallery</button>
+    
+    <button class="logout-btn" mat-flat-button disabled [routerLink]="['/']">Logout</button>
 
 
-<button type="button" [routerLink]="['/']">Logout</button>
+  </mat-toolbar>
+<!-- My navbar -->
+  <mat-progress-bar class="progress-bar" mode="indeterminate"></mat-progress-bar>
 
-<div>
-  <h1>WELCOME TO MY APP!</h1>
-  <button type="button" [routerLink]="['/user']">START</button>
+<div class="welcome-msg">
+  <h1>Welcome to your one stop music app where you can <br> search for your favorite artists/albums <br> and share with your friends</h1>
+  
 </div>
-<!-- <div>
-  <button type="button" (click)="getUserProfile()">User Profile</button>
-  <div *ngFor="let users of user">
-    <h1>{{users.display_name}}</h1>
-      <p>Name: {{ users.display_name }}</p>
-      <a href="{{ users.external_urls.spotify }}">Go to my Spotify profile:</a>
-      <p>Followers: {{ users.followers.total }}</p>
-      <p>ID: {{ users.id }}</p>
-      <a href="{{ users.images[0].url }}">Download Image </a>
-      <img src="{{ users.images[0].url }}" alt="{{ users.images[0].url }}" width="100vw">
+
+</body>
+</html>
+
+
+
+
+
+<!-- <h1>WELCOME </h1>
+
+<section>
+  <div class="example-label"></div>
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" [routerLink]="['/user']">START</button>
   </div>
-
-</div> -->
-
+</section> -->
 
 
-   
-<!-- 
-<div>
-    <table>
-        <tr>
-          <td>User ID:</td>
-          <td>
-            <input type="text" size="30" value="{{user.id}}" formControlName="id">
-
-          </td>
-        </tr>
-        <tr>
-          <td>User Name:</td>
-          <td>
-            <input type="text" size="30" value="{{user.display_name}}" formControlName="display_name" >
-          </td>
-        </tr>
-        <tr>
-            <td>Followers:</td>
-            <td>
-              <input type="text" size="30" value="{{user.followers.total}}" formControlName="followers">
-  
-            </td>
-          </tr>
-          <tr>
-            <td>Image Url:</td>
-            <td>
-              <input type="text" size="30" value="{{user.images[0].url}}" formControlName="images">
-  
-            </td>
-          </tr>
-          <tr>
-            <td>External Url:</td>
-            <td>
-              <input type="text" size="30" value="{{user.external_urls.spotify}}" formControlName="external_urls">
-  
-            </td>
-          </tr>
-        <tr>
-          <td></td>
-          <td>
-            <button type="submit">postUserInfo()</button>
-          </td>
-        </tr>
-      </table>
-</div> -->
-   
-  
-  <!-- </form> -->
 
 

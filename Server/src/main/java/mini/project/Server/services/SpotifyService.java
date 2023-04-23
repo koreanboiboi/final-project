@@ -24,9 +24,6 @@ import jakarta.json.JsonReader;
 import mini.project.Server.models.SpotifyAlbum;
 import mini.project.Server.models.SpotifyArtist;
 import mini.project.Server.models.User;
-// import mini.project.Server.repositories.UserRepository;
-// import se.michaelthelin.spotify.SpotifyApi;
-// import se.michaelthelin.spotify.requests.data.library.SaveAlbumsForCurrentUserRequest;
 
 @Service
 public class SpotifyService {
@@ -35,22 +32,10 @@ public class SpotifyService {
     private static final String SAVEALBUMURL = "https://api.spotify.com/v1/me/albums";
     private static final String UserURL = "https://api.spotify.com/v1/me";
 
-    // @Autowired
-    // private UserRepository spotRepo;
-
-
-    // public List<User> getUser(){     
-    //     return spotRepo.getUser();
-    // }
-
-    // public List<User> saveUser(String user) {
-    //     return spotRepo.insertUser(user);
-    // }
-
-    //getUserProfile service
+   //user profile service
     public List<User> getUserProfile(Map<String,String> headers){
         String authHeader = headers.toString();
-        String authToken = authHeader.split(",\\s*")[12].replace("authorization=Bearer ", "");
+        String authToken = authHeader.split(",\\s*")[10].replace("authorization=Bearer ", "");
         System.out.println("headers>>>" + headers.toString());
         System.out.println("AuthToken: >>>>> "+ authToken);
 
@@ -65,27 +50,10 @@ public class SpotifyService {
         JsonReader jsonReader = Json.createReader(strReader);
         JsonObject jsonObject = jsonReader.readObject();
 
-        // JsonArray data = jsonObject.asJsonArray();
-        // System.out.println("object >>>>>>>>>>>" + jsonObject);
-        // List<User> userList = new LinkedList<>();
-        // JsonObject jo = data.getJsonObject(0);
-        // userList.add(User.create(jo));
-        // System.out.println("JO >>>>>>>>>>>>>>"+jo);
-
-
         User user = User.create(jsonObject);
         List<User> userList = new LinkedList<>();
         userList.add(user);
 
-        // System.out.println("userList>>>>>>>>>" + userList.toString());
-        // for(int i = 0 ; i < data.size(); i++){
-        //     JsonObject jo = data.getJsonObject(i);
-        //     userList.add(User.create(jo));
-        //         }
-            
-    
-            // System.out.println("userlist>>>>>>>>>>>>>"+userList.toString());
-    
             return  userList;
 
     }
@@ -94,13 +62,13 @@ public class SpotifyService {
     public List<SpotifyArtist> searchArtist(Map<String,String> param, Map<String,String> headers){
 
         String authHeader = headers.toString();
-        String authToken = authHeader.split(",\\s*")[12].replace("authorization=Bearer ", "");
+        String authToken = authHeader.split(",\\s*")[10].replace("authorization=Bearer ", "");
+        //ATTENTION IF YOU NEED TO OPEN INSPECT TO VIEW CONSOLE, USE THIS CODE below INSTEAD OTHERWISE THE AUTHORIZATION CODE WILL BE WRONG
+        // String authToken = authHeader.split(",\\s*")[12].replace("authorization=Bearer ", "");
+        
 
         System.out.println("AuthToken: >>>>> "+ authToken);
 
-
-        // HttpHeaders header = new HttpHeaders();
-        // header.set("Authorization", "Bearer "+ authToken);
 
         String params = param.toString()
                                 .replace("{", "")
@@ -143,7 +111,10 @@ public class SpotifyService {
     public List<SpotifyAlbum> searchAlbum(Map<String,String> param, Map<String,String> headers){
 
         String authHeader = headers.toString();
-        String authToken = authHeader.split(",\\s*")[12].replace("authorization=Bearer ", "");
+        String authToken = authHeader.split(",\\s*")[10].replace("authorization=Bearer ", "");
+        //ATTENTION IF YOU NEED TO OPEN INSPECT TO VIEW CONSOLE, USE THIS CODE below INSTEAD OTHERWISE THE AUTHORIZATION CODE WILL BE WRONG
+        // String authToken = authHeader.split(",\\s*")[12].replace("authorization=Bearer ", "");
+        
 
         System.out.println("AuthToken: >>>>> "+ authToken);
 
@@ -188,14 +159,11 @@ public class SpotifyService {
         System.out.println("IDS>>>" + albumIds);
         
         String authHeader = headers.toString();
-        // System.out.println("authHeader>>>>>>>>" + authHeader);
         String authToken = authHeader.split(",\\s*")[13].replace("authorization=Bearer ", "");
 
         System.out.println("authToken >>>" + authToken);
 
         String requestBody =  albumIds;
-
-        // URI saveAlbumUrl = URI.create("https://api.spotify.com/v1/me/albums");
 
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -203,16 +171,11 @@ public class SpotifyService {
 
         String saveAlbumUrl = UriComponentsBuilder.fromUriString(SAVEALBUMURL).toUriString();
 
-        // RequestEntity<String> req = new RequestEntity<String>(requestBody,header,HttpMethod.PUT, saveAlbumUrl);
-
-        // String url = String.format("%s?ids=%s", SAVEALBUMURL, ids);
+        
         RequestEntity<String> req = RequestEntity.put(saveAlbumUrl).header("Authorization", "Bearer "+ authToken).accept(MediaType.APPLICATION_JSON).body(albumIds);
 
-   
-        // System.out.println("globalAuthToken>>>>" + authToken);
         RestTemplate restTemp = new RestTemplate();
         ResponseEntity<String> resp = restTemp.exchange(req, String.class);
-        // String payload = resp.getBody();
         System.out.println("Response>>>>" + resp);
 
         return resp;

@@ -1,34 +1,28 @@
 package mini.project.Server.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-// import java.util.stream.Collectors;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
-// import jakarta.json.JsonString;
 
 
 public class SpotifyAlbum {
     private String id;
     private String name;
-    // private List<SpotifyArtist> artists;
     private String imageUrl;
     private String uri;
     private String album_type;
     private int total_tracks;
-    // private List<String> available_markets;
     private Map<String, String> external_urls;
     private String href;
     private List<Image> images;
     private String release_date;
-    // private String release_date_precision;
     private String album_group;
 
     public String getId() {
@@ -47,15 +41,7 @@ public class SpotifyAlbum {
         this.name = name;
     }
 
-    // public List<SpotifyArtist> getArtists() {
-    //     return artists;
-    // }
-
-    // public void setArtists(List<SpotifyArtist> artists) {
-    //     this.artists = artists;
-    // }
-
-    
+  
 
     public String getImageUrl() {
         return imageUrl;
@@ -89,13 +75,7 @@ public class SpotifyAlbum {
         this.total_tracks = total_tracks;
     }
 
-    // public List<String> getAvailable_markets() {
-    //     return available_markets;
-    // }
-
-    // public void setAvailable_markets(List<String> available_markets) {
-    //     this.available_markets = available_markets;
-    // }
+   
 
     public Map<String, String> getExternal_urls() {
         return external_urls;
@@ -129,15 +109,6 @@ public class SpotifyAlbum {
         this.release_date = release_date;
     }
 
-    // public String getRelease_date_precision() {
-    //     return release_date_precision;
-    // }
-
-    // public void setRelease_date_precision(String release_date_precision) {
-    //     this.release_date_precision = release_date_precision;
-    // }
-
-   
 
     public String getAlbum_group() {
         return album_group;
@@ -186,15 +157,10 @@ public class SpotifyAlbum {
         spotifyAlbum.setUri(jo.getString("uri"));
         spotifyAlbum.setAlbum_type(jo.getString("album_type"));
         spotifyAlbum.setTotal_tracks(jo.getInt("total_tracks"));
-    // spotifyAlbum.setAvailable_markets(Arrays.asList(jo.getJsonArray("available_markets")
-    //                                     .getValuesAs(JsonString.class).stream()
-    //                                     .map(JsonString::getString).toArray(String[]::new)));
-    spotifyAlbum.setHref(jo.getString("href"));
-    spotifyAlbum.setRelease_date(jo.getString("release_date"));
+        spotifyAlbum.setHref(jo.getString("href"));
+        spotifyAlbum.setRelease_date(jo.getString("release_date"));
     
-    // spotifyAlbum.setArtists(jo.getJsonArray("artists").getValuesAs(JsonObject.class).stream()
-    //                                  .map(SpotifyArtist::create).collect(Collectors.toList()));
-        
+    
 
 
 //---------------------------------------------------------------------------------------------------------

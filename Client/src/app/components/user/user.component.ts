@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models';
@@ -10,31 +10,33 @@ import { SpotifyService } from 'src/app/spotify.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent {
+export class UserComponent implements OnInit{
 
 
-  constructor(private spotAuthSvc: SpotifyAuthService, private fb: FormBuilder, private spotSvc: SpotifyService, private router: Router){
+  constructor(private spotAuthSvc: SpotifyAuthService, private fb: FormBuilder, private spotSvc: SpotifyService, private router: Router){}
 
-    this.spotAuthSvc.requestAccessToken();
 
-    this.getUserProfile();
-  
-  }
 
   user!: User []
   userForm!: FormGroup
   loggedin = false;
 
+  ngOnInit(): void {
+    // this.spotAuthSvc.requestAccessToken();
+
+    this.getUserProfile();
+  }
 
   async getUserProfile(){
     try {
       const data = await this.spotAuthSvc.getUserProfile().toPromise();
       this.user = data;
-      console.log("DATA",data)
-      console.log("ID>>>" , data[0].id)
+      // console.log("DATA",data)
+      // console.log("ID>>>" , data[0].id)
       const userId = data[0].id
       localStorage.setItem("user_id",userId)
-
+      // const name = data[0].display_name
+      // localStorage.setItem('name',name)
       this.spotSvc.saveUser(data).subscribe(response => {
         alert("Saved Successfully")
       });
@@ -42,5 +44,11 @@ export class UserComponent {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  goSpotify(url: any){
+
+    window.open(url,'_blank')
+
   }
 }

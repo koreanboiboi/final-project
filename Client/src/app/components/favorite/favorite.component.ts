@@ -24,11 +24,6 @@ export class FavoriteComponent implements OnInit{
       this.userId = userID
   }
 
-  // getArtist(){
-  //     this.spotSvc.getArtist(this.user).subscribe(response => {
-  //     console.log(this.user)
-  //   })
-  // }
 
   async getArtist(){
     this.showArtist = true;
@@ -49,6 +44,7 @@ export class FavoriteComponent implements OnInit{
 
     this.spotSvc.deleteArtist(removeById).subscribe(response => {
       console.log("deleted",removeById)
+      
       this.getArtist()
     })
 
@@ -105,14 +101,10 @@ export class FavoriteComponent implements OnInit{
       console.error('Upload error:', error);
     });
 
-      // const image = document.createElement('img');
-      // image.src = URL.createObjectURL(imageFile);
-      // const link = document.createElement('a');
-      // link.href = imageURL;
-      // link.appendChild(image);
+     
 
     navigator.share({
-      title: 'My awesome SINGLE PAGE APP',
+      title: 'My awesome APPLICATION',
       text: 'Check out this cool content!\n'
             +`Listen to ${JSON.stringify(artistData.name)} on Spotify \n`
             +'Click link below',
