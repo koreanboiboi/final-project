@@ -31,6 +31,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
+import { LogoutComponent } from './components/logout/logout.component';
 
 // ------------------------------------------------------------------------------
 
@@ -44,7 +45,8 @@ import {MatChipsModule} from '@angular/material/chips';
     AlbumsComponent,
     FavoriteComponent,
     UserComponent,
-    GalleryComponent
+    GalleryComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

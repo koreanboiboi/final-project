@@ -8,6 +8,7 @@ import { AlbumsComponent } from './components/SearchByType/albums.component';
 import { ArtistsComponent } from './components/SearchByType/artists.component';
 import { UserComponent } from './components/user/user.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path: 'user' , component: UserComponent},
   {path: 'favorite' , component: FavoriteComponent},
   {path: 'gallery' , component: GalleryComponent},
+  {path: 'logout' , component: LogoutComponent},
+
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 

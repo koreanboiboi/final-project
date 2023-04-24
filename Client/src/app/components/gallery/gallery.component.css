@@ -54,4 +54,33 @@ section {
   
   .btn{
     position: fixed;
+    z-index: 9999;
   }
+
+
+  /* #image-container {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation: bounce 5s ease-in-out infinite;
+    
+  }
+  
+  @keyframes bounce {
+    0% {
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(calc(50vw - 50px), calc(50vh - 50px));
+      }
+      50% {
+        transform: translate(calc(50vw - 100px), 0);
+      }
+      75% {
+        transform: translate(0, calc(50vh - 100px));
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+  } */

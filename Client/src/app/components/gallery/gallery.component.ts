@@ -25,5 +25,5 @@ export class GalleryComponent implements OnInit {
     this.spotSvc.getBlob()
   }
 
- 
+   
 }

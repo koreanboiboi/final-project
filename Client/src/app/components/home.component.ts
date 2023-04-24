@@ -33,10 +33,8 @@ export class HomeComponent implements OnInit {
     } else {
       setTimeout(() => {
         this.router.navigate(['/user']);
-      }, 1000);
+      }, 5000);
     }
-
-  
 
   }
 

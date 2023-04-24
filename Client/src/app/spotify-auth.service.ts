@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,9 @@ export class SpotifyAuthService {
     private router: Router, 
     private activatedRoute: ActivatedRoute) { }
 
-  private client_id:string = '1987a0a7b4c546dfb0d35b687172b78d'
-  private client_secret: string ='b1be59d2deba4e70840e874b1be791d2'
+     client_id = environment.clientId;
+     client_secret = environment.clientSecret;
+
   private redirect_uri: string = 'http://localhost:4200/success'
 
   private state = this.generateRandomString(16);
@@ -79,7 +80,6 @@ export class SpotifyAuthService {
             this.access_token = data.access_token
             },
           error => {
-            // Handle error
             console.error("Error: ", error)
           }
         );
@@ -103,11 +103,9 @@ export class SpotifyAuthService {
       data => {
         this.access_token = data.access_token;
         this.refresh_token = data.refresh_token
-        // Handle success
         // console.log(this.access_token)
       },
       error => {
-        // Handle error
         console.error(error)
       }
     );

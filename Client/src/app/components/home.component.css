@@ -36,6 +36,11 @@ section {
     right: 0;
   }
 
+  .welcome-msg{
+    display: flex;
+    justify-content: center;
+  }
+
   /* navbar css end */
 
   /* .toolbar {
