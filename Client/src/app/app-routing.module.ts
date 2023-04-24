@@ -15,11 +15,13 @@ const routes: Routes = [
   {path: '', component:LoginComponent},
   {path: 'artists', component:ArtistsComponent},
   {path: 'albums', component:AlbumsComponent},
-  {path: 'success' , component: HomeComponent},
+  {path: 'home' , component: HomeComponent},
   {path: 'user' , component: UserComponent},
   {path: 'favorite' , component: FavoriteComponent},
   {path: 'gallery' , component: GalleryComponent},
   {path: 'logout' , component: LogoutComponent},
+  {path: 'login' , component: LoginComponent},
+
 
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];

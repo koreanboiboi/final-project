@@ -22,7 +22,9 @@ export class UserComponent implements OnInit{
   loggedin = false;
 
   ngOnInit(): void {
-    // this.spotAuthSvc.requestAccessToken();
+    this.spotAuthSvc.requestAccessToken();
+
+   
 
     this.getUserProfile();
   }

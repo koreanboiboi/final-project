@@ -1,0 +1,38 @@
+version: '3.9'
+
+networks:
+  mynet:
+
+volumes:
+  data-vol:
+
+services:
+  grdb:
+    image: vttp/project-db:v1
+
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+
+    networks:
+    - mynet
+    volumes:
+    - data-vol:/var/lib/mysql
+
+  grapp:
+    image: vttp/project:v1
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    networks:
+    - mynet
+
+    environment:
+    - SPRING_DATASOURCE_URL: jdbc:mysql://containers-us-west-33.railway.app:6242/railway
+    - SPRING_DATASOURCE_USERNAME: root
+    - SPRING_DATASOURCE_PASSWORD: EbiDpoJsRg0uJ8R4PoMe
+    ports:
+    - 8080:8080
+

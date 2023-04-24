@@ -2,14 +2,15 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable, Subject } from 'rxjs';
 import { User } from './models';
-import * as FileSaver from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
   
-  private backend = 'http://localhost:8080'
+  private backend = 'https://kindhearted-cent-production.up.railway.app'
+  // private backend = 'http://localhost:8080'
+  
 
 
   constructor(private http: HttpClient) { }

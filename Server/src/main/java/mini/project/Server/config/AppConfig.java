@@ -24,6 +24,12 @@ public class AppConfig {
                         .allowedMethods("OPTIONS","GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .maxAge(3600);
+
+                registry.addMapping("/**") 
+                        .allowedOrigins("https://kindhearted-cent-production.up.railway.app")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("*")
+                        .maxAge(3600);
             }
         };
     }

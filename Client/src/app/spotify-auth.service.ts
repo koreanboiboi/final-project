@@ -16,14 +16,15 @@ export class SpotifyAuthService {
      client_id = environment.clientId;
      client_secret = environment.clientSecret;
 
-  private redirect_uri: string = 'http://localhost:4200/success'
+  private redirect_uri: string = 'https://kindhearted-cent-production.up.railway.app'
 
   private state = this.generateRandomString(16);
   private scope = 'user-read-private&user-read-email&user-library-read&user-library-modify&user-top-read';
   private AUTHORIZE: string ='https://accounts.spotify.com/authorize'
 
   private refresh_token!: string
-  private access_token!: string
+  // private access_token!: string
+  access_token = localStorage.getItem('token') 
 
 
 // -----------------------------------------------SPOTIFY OAUTH--------------------------------------------------------------------------
@@ -77,7 +78,7 @@ export class SpotifyAuthService {
           data => {
             // data contains my access token and refresh token
             console.log(data.access_token)
-            this.access_token = data.access_token
+            localStorage.setItem('token' , data.access_token )
             },
           error => {
             console.error("Error: ", error)
@@ -115,10 +116,15 @@ export class SpotifyAuthService {
 
 
   //-------------------------------------------------URL HERE-----------------------------------------------------------------------------
-  private userInfoURL = 'http://localhost:8080/api/user'
-  private searchArtistUrl = 'http://localhost:8080/api/artists';
-  private searchAlbumUrl = 'http://localhost:8080/api/albums';
-  private saveAlbumUrl = 'http://localhost:8080/api/albums/save'
+  // private userInfoURL = 'http://localhost:8080/api/user'
+  // private searchArtistUrl = 'http://localhost:8080/api/artists';
+  // private searchAlbumUrl = 'http://localhost:8080/api/albums';
+  // private saveAlbumUrl = 'http://localhost:8080/api/albums/save'
+
+  private userInfoURL = 'https://kindhearted-cent-production.up.railway.app/api/user'
+  private searchArtistUrl = 'https://kindhearted-cent-production.up.railway.app/api/artists';
+  private searchAlbumUrl = 'https://kindhearted-cent-production.up.railway.app/api/albums';
+  private saveAlbumUrl = 'https://kindhearted-cent-production.up.railway.app/api/albums/save'
 
 
   // --------------------------------API CALL----------------------------------------------------------------------------------
@@ -126,7 +132,7 @@ export class SpotifyAuthService {
   getUserProfile(){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.access_token
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
 
     return this.http.get<any>(this.userInfoURL,{headers})
@@ -137,7 +143,7 @@ export class SpotifyAuthService {
     // alert(JSON.stringify(params))
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.access_token
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     return this.http.get<any>(this.searchArtistUrl, {params, headers});
   }
@@ -147,7 +153,7 @@ export class SpotifyAuthService {
     // alert(JSON.stringify(params))
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.access_token
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     return this.http.get<any>(this.searchAlbumUrl, {params, headers});
   }

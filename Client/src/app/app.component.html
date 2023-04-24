@@ -18,7 +18,42 @@
         </mat-toolbar-row>
       </mat-toolbar>
 
+ <!-- My navbar -->
+ <div class="nav-content">
+  <mat-toolbar class="toolbar" color="secondary" >
 
+    <button mat-icon-button matTooltip="Home" class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="['/user']">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-button [routerLink]="['/user']">Home</button>
+    
+    <button mat-icon-button matTooltip="Search Artist"class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" [routerLink]="['/artists']">
+      <mat-icon>person</mat-icon>
+    </button>
+    <button mat-button [routerLink]="['/artists']">Search Artist</button>
+    
+    <button mat-icon-button matTooltip="Search Album" class="example-icon" aria-label="Example icon-button with share icon" [routerLink]="['/albums']">
+      <mat-icon>album</mat-icon>
+    </button>
+    <button mat-button [routerLink]="['/albums']">Search Album</button>
+    
+    <button mat-icon-button matTooltip="View my favorites" class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="['/favorite']">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-button [routerLink]="['/favorite']">Favorite</button>
+    
+    <button mat-icon-button matTooltip="View gallery" class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="['/gallery']">
+      <mat-icon>collections</mat-icon>
+    </button>
+    <button mat-button [routerLink]="['/gallery']">Gallery</button>
+    
+    <button class="logout-btn" mat-flat-button color="primary" [routerLink]="['/logout']">Logout</button>
+
+
+  </mat-toolbar>
+</div>
+
+<!-- My navbar -->
 
     <router-outlet></router-outlet>
 

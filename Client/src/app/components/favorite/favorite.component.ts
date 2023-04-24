@@ -13,7 +13,7 @@ export class FavoriteComponent implements OnInit{
   showArtist = false;
   showAlbum = false;
 
-  userId: any
+  userId: any 
   constructor(private spotSvc: SpotifyService){}
 
   artist!: sqlArtist []
